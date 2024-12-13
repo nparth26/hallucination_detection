@@ -1,0 +1,33 @@
+Original
+
+extraction_prompt = f"""Extract only the key technical concepts, named entities, and important terms from the following text. 
+For each concept provide:
+- The concept word or phrase
+- Its position (start and end index) in the text
+- The type of entity (e.g., TECH, MEDICAL, PERSON, ORG, etc.)
+    
+Text: {text}
+
+Format your response as a list of JSON objects, one per line:
+{{"word": "concept", "start": "start_idx", "end": "end_idx", "entity": "type"}}"""
+
+definition_prompt = f"""Explain the following concept in detail without using the concept term itself or its close synonyms:
+Concept: {concept['word']}
+
+Provide a clear, detailed explanation that would allow someone to understand and identify the concept."""
+
+inference_prompt = f"""Based on the following masked definition, infer what concept is being described:
+
+Definition: {definition['masked_definition']}
+
+Provide a single specific concept that best matches this definition. Only provide the name of the concept in the output and not the explanation"""
+
+scoring_prompt = f"""Rate the similarity between these concepts' words on a scale of 1 to 10. Most importantly give more weightage to name similarity and very less weightage to semantic similarity:
+
+Original Concept: {concept_pair['original_concept']}
+Inferred Concept: {concept_pair['inferred_concept']}
+
+Respond ONLY with a JSON object in this exact format:
+{{"similarity_score": <number between 1-10>}}
+
+"""

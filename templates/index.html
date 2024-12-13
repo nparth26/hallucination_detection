@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hallucination Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hallucination Detection System</h1>
+        
+        <!-- Query Input Section -->
+        <div class="input-section">
+            <textarea id="queryInput" placeholder="Enter your query here..."></textarea>
+            <button id="analyzeBtn" onclick="analyzeQuery()">Analyze</button>
+            <button id="clearBtn" onclick="clearAll()">Clear</button>
+        </div>
+        <div id="loadingIndicator" class="loading-indicator">
+            <div class="spinner"></div>
+            <p>Processing...</p>
+        </div>
+        <!-- Results Display Section -->
+        <div class="results-container">
+            <!-- Concepts Section -->
+            <div class="result-section" id="conceptSection">
+                <h2>Extracted Concepts</h2>
+                <div id="conceptsDisplay" class="result-content"></div>
+            </div>
+
+            <!-- Definitions Section -->
+            <div class="result-section" id="definitionSection">
+                <h2>Masked Definitions</h2>
+                <div id="definitionsDisplay" class="result-content"></div>
+            </div>
+
+            <!-- Inferences Section -->
+            <div class="result-section" id="inferenceSection">
+                <h2>Inferred Concepts</h2>
+                <div id="inferencesDisplay" class="result-content"></div>
+            </div>
+
+            <!-- Similarity Score Section -->
+            <div class="result-section" id="scoreSection">
+                <h2>Similarity Scores</h2>
+                <div id="scoresDisplay" class="result-content"></div>
+            </div>
+        
+
+            <!-- Final Result Section -->
+            <div class="result-section" id="finalResultSection">
+                <h2>Final Result</h2>
+                <div id="finalResultDisplay" class="result-content"></div>
+            </div>
+        </div>
+        <!-- Loading Indicator -->
+        
+    </div>
+    <script src="{{ url_for('static', path='/js/script.js') }}"></script>
+</body>
+</html>
